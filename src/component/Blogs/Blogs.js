@@ -18,18 +18,21 @@ const Blogs = () => {
     const [blogsList, setBlogsList] = useState([])
     const [userList, setUserList] = useState([])
     const [filterValue, setFilterValue] = useState([])
-    useEffect (async() => {
-        await fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(res => res?.json())
-            .then((result) =>
-                {setBlogsList(result)},
-                (error) => {console.log({error})})
-        await fetch('https://jsonplaceholder.typicode.com/users')
-            .then(res => res?.json())
-            .then((result) =>
-                {setUserList(result)},
-                (error) => {console.log({error})})
-        return true
+    useEffect (() => {
+        const fetchData = async() => {
+            await fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(res => res?.json())
+                .then((result) =>
+                    {setBlogsList(result)},
+                    (error) => {console.log({error})})
+            await fetch('https://jsonplaceholder.typicode.com/users')
+                .then(res => res?.json())
+                .then((result) =>
+                    {setUserList(result)},
+                    (error) => {console.log({error})})
+            return true
+        }
+        fetchData()
     }, [])
     return(
         <Container>
